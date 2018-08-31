@@ -2,9 +2,15 @@
 
 Simple database pool middleware for Gin-Gonic framework.
 
-This middleware set on each request a mysql connection (new or pooled), and ca be accessed with context `Get("Database")` or `MustGet("Database")` method.
+This middleware set on each request a mysql connection (new or pooled), and can be accessed with context `Get("Database")` or `MustGet("Database")` method.
 
 ```
+package main
+
+import (
+	ggDBPool "github.com/valenciaj/gg-db-pool"
+)
+
 // Create server
 srv := gin.Default()
 
@@ -13,7 +19,7 @@ dbConnStr =: "mysql://user:pwd@tcp(localhost)/database"
 // Set middlewares
 srv.Use(
 	gin.Recovery(),
-	middleware.Database(dbConnStr),
+	ggDBPool.Database(dbConnStr),
 )
 
 // ... set other stuff ...
